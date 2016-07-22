@@ -37,7 +37,7 @@ class Quote(Model):
     	return self.db.query_db(query, data)
 
     def get_faves(self, id):
-    	query = 'SELECT favorites.id, quotes.quote, quotes.author, quotes.user_id, users.alias FROM quotes JOIN favorites ON quotes.id = favorites.quote_id JOIN users ON users.id = favorites.user_id WHERE favorites.user_id = :id'
+    	query = 'SELECT favorites.id, quotes.quote, quotes.author, quotes.user_id, users.alias FROM quotes JOIN users ON users.id = quotes.user_id JOIN favorites ON quotes.id = favorites.quote_id WHERE favorites.user_id = :id'
     	data = {'id': id}
     	return self.db.query_db(query, data)
 
