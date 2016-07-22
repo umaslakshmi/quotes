@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset='utf-8'>
+		<title>Login or Register | Quotes</title>
+		<link rel="stylesheet" href="/static/js/jquery-ui-1.11.4.custom/jquery-ui.min.css">
+		<script src="/static/js/jquery-ui-1.11.4.custom/external/jquery/jquery.js"></script>
+		<script src="/static/js/jquery-ui-1.11.4.custom/jquery-ui.min.js"></script>
+		<script type="text/javascript">
+			$(document).ready(function(){
+				$('#date').datepicker({ maxDate: 0, numberOfMonths: [1,4]});
+			});
+		</script>
+	</head>
+	<body>
+		<h1>Welcome!</h1>
+		<h2>Register</h2>
+		{% with messages = get_flashed_messages(category_filter=['regis_errors']) %}
+			{% if messages %}
+				{% for message in messages %}
+					<p class='error' style='color: red'>{{message}}</p>
+				{% endfor %}
+			{% endif %}
+		{% endwith %}
+		<form method='post' action='/users/register'>
+			<label>Name:</label>
+			<input type='text' name='name' style='display: block'>
+			<label>Alias:</label>
+			<input type='text' name='alias' style='display: block'>
+			<label>Email:</label>
+			<input type='text' name='email' style='display: block'>
+			<label>Password:</label>
+			<input type='password' name='password' style='display: block'>
+			<label>Confirm Password:</label>
+			<input type='password' name='confirm-password' style='display: block'>
+			<label>Date of Birth:</label>
+			<input type='text' name='dob' id='date' style='display: block'>
+			<input type='submit' value='Register' style='display: block'>
+		</form>
+
+		<h2>Login</h2>
+		{% with messages = get_flashed_messages(category_filter=['login_errors']) %}
+			{% if messages %}
+				{% for message in messages %}
+					<p class='error' style='color: red'>{{message}}</p>
+				{% endfor %}
+			{% endif %}
+		{% endwith %}
+		<form method='post' action='/users/login'>
+			<label>Email:</label>
+			<input type='text' name='email' style='display: block'>
+			<label>Password:</label>
+			<input type='password' name='password' style='display: block'>
+			<input type='submit' value='Login' style='display: block'>
+		</form>
+	</body>
+</html>

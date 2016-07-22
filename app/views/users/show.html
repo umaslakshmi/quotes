@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset='utf-8'>
+		<title>User | Quotes</title>
+	</head>
+	<body>
+		<a href="/quotes/home">Dashboard</a> |
+		<a href="/users/logout">Logout</a>
+		<h3>Posts by {{user['alias']}}</h3>
+		<p>Count: {{count}}</p>
+
+		{% for quote in quotes %}
+			<p><span style='color: red'>{{quote['author']}}</span>: {{quote['quote']}}</p>
+		{% endfor %}
+	</body>
+</html>
